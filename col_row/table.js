@@ -5,7 +5,6 @@ import { Manager } from "./manager.js";
  * @param {import("./functions").ColspanType | import("./functions").RowspanType} type
  * @returns {void}
  */
-
 class Table{
     /**@type {HTMLTableSectionElement} */
     #tbody;
@@ -13,10 +12,10 @@ class Table{
     #manager;
     /**
      * 
-     * @param {import("./functions").HeaderArrayType} headerArry 
+     * @param {import("./functions").HeaderType[]} headerArry 
      * @param {Manager} manager 
      */
-    constructor(headerArry, manager){
+    constructor(headerArry,manager){
         this.#manager=manager
         const table = document.createElement('table')
         document.body.appendChild(table)
@@ -35,6 +34,7 @@ class Table{
         this.#tbody=tbody
     }
     /**
+     * 
      * @param {Tablecallback} callback 
      */
     setAppendRow(callback){
@@ -42,4 +42,4 @@ class Table{
     }
 }
 
-export {Table}
+export{Table}

@@ -1,23 +1,16 @@
 /**
- * @import {FromFieldType, HeaderArrayType, ColSpanType, RowSpanType} from './functions.js'
- * 
+ * @import {FormFieldType,HeaderArrayType,ColspanType,RowspanType} from './functions.js' 
+ *
  * @callback addCallback
- * @param {ColSpanType | RowSpanType}
+ * @param {ColspanType | RowspanType} type
  * @returns {void}
- */
-
+ * */
 class Manager{
-    /**
-     * @type {ColSpanType[] | RowSpanType[]}
-     */
+    /**@type {ColspanType[] | RowspanType[]} */
     #dataArry;
-    /**
-     * @type {addCallback}
-     */
+    /**@type {addCallback} */
     #addCallback;
-    /**
-     * @param {addCallback} value
-     */
+    /**@param {addCallback} value */
     set addCallback(value){
         this.#addCallback=value
     }
@@ -34,5 +27,7 @@ class Manager{
         if(this.#addCallback){this.#addCallback(colRowType)}
     }
 }
+
+
 
 export {Manager}
