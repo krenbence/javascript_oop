@@ -1,28 +1,24 @@
-import {hide, show} from "./gomszab.min.js";
+import { hide, show } from "./gomszab.min.js";
 
+/**
+ * @callback ActivateCallback
+ * @returns {void}
+ */
 class ViewElement{
-    /**
-     *@callback ActivateCallback
-     @returns {void}
-     */
-
-    /**
-     * @type {HTMLDivElement}
-     */
+    /**@type {HTMLDivElement} */
     #div;
-
-    /**
-     * @type {string}
-     */
+    /**@type {string} */
     #id;
-
-    /**
-     * @type {ActivateCallback}
-     */
+    /**@type {ActivateCallback} */
     #activateCallback;
 
     get div(){
-        return this.#div;
+        return this.#div
+    }
+
+    /**@param {ActivateCallback} value */
+    set activateCallback(value){
+        this.#activateCallback=value
     }
 
     get id(){
@@ -31,21 +27,12 @@ class ViewElement{
 
     /**
      * 
-     * @param {ActivateCallback}
-     */
-    set activateCallback(value){
-        this.#activateCallback = value;
-
-    }
-
-    /**
-     * 
      * @param {string} id 
      */
     constructor(id){
-        this.#id = id;
-        this.#div = document.createElement("div")
-        this.#div.id = id;
+        this.#id=id
+        this.#div=document.createElement("div")
+        this.#div.id=id;
     }
 
     /**
@@ -53,7 +40,7 @@ class ViewElement{
      * @param {HTMLElement} parent 
      */
     appendTo(parent){
-        parent.appendChild(this.#div);
+        parent.appendChild(this.#div)
     }
 
     /**
@@ -66,12 +53,11 @@ class ViewElement{
             if(this.#activateCallback){
                 this.#activateCallback();
             }
-        }else{
+        }
+        else{
             hide(this.#div)
         }
     }
-
-
 }
 
 export {ViewElement}

@@ -1,18 +1,16 @@
+import { ViewElement } from "./viewElement.js";
 import { createRadioButton } from "./gomszab.min.js";
-import { ViewElement } from "./viewelement.js";
 
 class NavigationBar extends ViewElement{
-    /**
-     * @type {ViewElement[]}
-     */
+    /**@type {ViewElement[]} */
     #viewElementList;
 
     constructor(){
-        super("navbar")
-        this.#viewElementList = [];
-        this.div.addEventListener("change", (e) => {
+        super("navbar");
+        this.#viewElementList=[];
+        this.div.addEventListener("change", (e)=>{
             const radioButtonValue = e.target.value
-            this.activate(radioButtonValue)
+            this.activate(radioButtonValue);
         })
     }
 
@@ -22,9 +20,9 @@ class NavigationBar extends ViewElement{
      * @param {ViewElement} viewElement 
      */
     addViewElement(label, viewElement){
-        this.#viewElementList.push(viewElement)
-        const div = createRadioButton({id: viewElement.id, name: this.id, label})
-        this.div.appendChild(div)
+        this.#viewElementList.push(viewElement);
+        const div= createRadioButton({id: viewElement.id, name: this.id, label})
+        this.div.appendChild(div);
     }
 
     /**
@@ -33,10 +31,10 @@ class NavigationBar extends ViewElement{
      */
     activate(value){
         for(const viewElement of this.#viewElementList){
-            viewElement.activate(value)
+            viewElement.activate(value)         
         }
         this.div.querySelector(`#${value}`).checked = true;
     }
 }
 
-export {NavigationBar};
+export {NavigationBar}
