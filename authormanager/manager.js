@@ -12,25 +12,33 @@
  * @param {string} message
  * @returns {void}
  */
-class AuthorManager {
-    /** @type {Author[]} */
-    #authorList;
-
-    /** @type {TableCallback}  */
-    #tableCallback;
-
+class AuthorManager{ // definiáljuk az AuthorManager osztályt
 
     /**
-     * @type {addElementResultCallback}
+     * @type {Author[]}
      */
-    #addElementResultCallback;
-    /**@type {ImportResultCallback} */
-    #importResultCallback;
+    #authorList; // definiálunk egy privát authorList tulajdonságot
+
+    /**
+     * @type {TableCallback}
+     */
+    #tableCallback; // definiálunk egy privát tablecallback tulajdonságot
+
+    /**
+     * @type {AddElementResultCallback}
+     */
+    #addElementResultCallback; // definiálunk egy privát addelementresult tulajdonságot
+
+    /**
+     * @type {ImportResultCallback}
+     */
+    #importResultCallback; // definiálunk egy privát tulajdonságát az importresult callbacknek
+
     /**
      * @param {TableCallback} value
      */
-    set tableCallback(value) {
-        this.#tableCallback = value
+    set tableCallback(value){ // definiálunk egy settert a tablecallbacknek (hívjuk a Table-be)
+        this.#tableCallback = value;
     }
 
     /**

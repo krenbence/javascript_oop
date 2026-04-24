@@ -3,11 +3,11 @@ import { AuthorManager } from "./manager.js";
 import { ViewElement } from "./viewElement.js";
 
 
-class TableView extends ViewElement {
+class Table extends ViewElement {
     /** @type {AuthorManager} */
-    #manager;
+    #manager; // privát tulajdonság a managernek
     /** @type {HTMLTableSectionElement} */
-    #tbody
+    #tbody // privát tulajdonság a táblázat törzsének
 
     /**
      * 
@@ -15,37 +15,38 @@ class TableView extends ViewElement {
      * @param {string} id 
      * @param {AuthorManager} manager
      */
-    constructor(id, headerArray, manager) {
-        super(id);
-        this.#manager = manager
-        const table = document.createElement("table")
-        this.div.appendChild(table)
-        const thead = createTableHeader(headerArray)
-        table.appendChild(thead);
-        this.#tbody = document.createElement("tbody")
-        table.appendChild(this.#tbody)
-        this.#manager.tableCallback = (authorList) => {
-            if (authorList.length == 0) {
-                const tr = document.createElement("tr")
-                this.#tbody.appendChild(tr)
-                const td = createTableCell(tr, "Nincs megjelenitendo sor")
-                td.colSpan = 3
-            }
-            for (const author of authorList) {
-                const tr = document.createElement("tr")
-                this.#tbody.appendChild(tr)
+    constructor(id, headerArray, manager){
+    super(id); // szülőosztály konstruktorának meghívása
+    this.#manager = manager; // a manager értéke a bemeneti manager példány
+    const table = document.createElement('table'); // létrehozunk egy táblázatot
+    this.div.appendChild(table); // hozzácsatoljuk a táblázatot a divhez
+    const thead = createTableHeader(headerArray); // létrehozzuk a táblázat fejlécét a string tömb alapján
+    table.appendChild(thead); // hozzácsatoljuk a táblázathoz a theadet
+    this.#tbody = document.createElement('tbody'); // létrehozzuk a tbody-t
+    table.appendChild(this.#tbody); // hozzácsatoljuk a tbody-t a tablehöz
+    this.#manager.tableCallback = (authorList) => { // definiáljuk a manager tablecallback-jét (a setter meg
+        if(authorList.length === 0){ // ha a lista üres
+            const tr = document.createElement('tr'); // létrehozunk egy sor elemet
+            this.#tbody.appendChild(tr); // hozzácsatoljuk a tbody-hoz
+            const td = createTableCell(tr, 'Nincs megjelenítendő elem!'); // létrehozunk egy cellát
+            //tartalommal és hozzácsatoljuk a sorhoz
+            td.colSpan = 3; // kiterjesztjük a cellát 3 oszlopos szélességre
+        } // bele lehetne tenni else ágba
+        for(const author of authorList){ // végigiterálunk az authorlistán
+            const tr = document.createElement('tr'); // létrehozunk egy sort
+            this.#tbody.appendChild(tr); // hozzácsatoljuk a tbodyhoz
 
-                createTableCell(tr, author.name)
-                createTableCell(tr, author.work)
-                createTableCell(tr, author.concept)
+            createTableCell(tr, author.name) // létrehozunk egy cellát a sorhoz az author nevével
+            createTableCell(tr, author.work) // létrehozunk egy cellát a sorhoz az author nevével
+            createTableCell(tr, author.concept) // létrehozunk egy cellát a sorhoz az author nevével
             }
 
         }
-        this.activateCallback = () => {
-            this.#tbody.innerHTML = ""
-            this.#manager.getAllElement()
+        this.activateCallback = () => { // definialjuk az activate callbacket
+            this.#tbody.innerHTML = "" // toroljuk a tbody tartalmat
+            this.#manager.getAllElement() // meghivjuk a manager getall elementjet (ami meghivja  a tablecallbacket lasd authormanagger.getallelement)
         }
     }
 }
 
-export { TableView }
+export { Table } // exportaljuk a Tablet
