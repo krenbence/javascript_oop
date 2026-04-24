@@ -1,6 +1,10 @@
 import { hide, show } from "./gomszab.min.js";
 
 /**
+ * ősosztály a megjelenítendő viiw osztályoknak
+ */
+
+/**
  * @callback ActivateCallback
  * @returns {void}
  */
