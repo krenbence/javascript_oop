@@ -26,20 +26,18 @@ const formFields = [{
 }]
 
 const headerArray = ['Szerző', 'Mű', 'Fogalom']
-const manager= new AuthorManager();
 
+const manager = new AuthorManager(); // példányosítjuk a Managert
+const navbar = new Navbar(); // példányosítjuk a NavBart
+navbar.appendTo(document.body); // hozzáfűzzük a navbart a document.body-hoz
+const table = new Table('table', headerArray, manager); // példányosítjuk a table-t
+table.appendTo(document.body); // hozzáfűzzük a table-t a document.body-hoz
+navbar.addViewElement('Táblázat', table); // hozzáadjuk a table-t a navigációsbarhoz
+const form = new FormController('tableForm', formFields, manager); // példányosítjuk a FormControllert
+form.appendTo(document.body); // hozzáfűzzük a formControllert a document.body-hoz
+const importExport = new ImportExport('importexport', manager); // példányosítjuk az ImportExportot
+importExport.appendTo(document.body); // hozzáfűzzük az ImportExportot a document.body-hoz
+navbar.addViewElement('Form', form); // hozzáadjuk a FormControllert a navbarhoz
+navbar.addViewElement('Import/export', importExport); // hozzáadjuk az importExport-ot a navbarhoz
 
-const navbar= new NavigationBar();
-navbar.appendTo(document.body)
-
-const tableView= new TableView("table",headerArray, manager);
-tableView.appendTo(document.body)
-navbar.addViewElement("Táblázat", tableView)
-
-const formView= new FormView("tableForm", formFields, manager)
-formView.appendTo(document.body)
-navbar.addViewElement("Form", formView)
-const importExport= new ImportView("importexport", manager)
-importExport.appendTo(document.body)
-navbar.addViewElement("Import/Export", importExport)
-navbar.activate("table")
+navbar.activate('table'); // meghívjuk a navbar activate metódusát a table azonosítójával
